@@ -1,5 +1,7 @@
-package com.mtg.magicapi.Player;
+package com.mtg.magicapi.Card;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface CardRepository extends JpaRepository<Card, String>{
-    List<Card> findByNameContainingIgnoreCase(String name);
+    Page<Card> findByNameContainingIgnoreCase(String name , Pageable pageable);
     List<Card> findByTypeLineContainingIgnoreCase(String typeLine);
     List<Card> findByRarity(String rarity);
     Optional<Card> findByName(String name);

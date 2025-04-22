@@ -1,7 +1,9 @@
-package com.mtg.magicapi.Player;
+package com.mtg.magicapi.Card;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,8 +19,8 @@ public class CardService {
         this.cardRepository = cardRepository;
     }
 
-    public List<Card> getCards() {
-        return cardRepository.findAll();
+    public Page<Card> getCards(Pageable pageable) {
+        return cardRepository.findAll(pageable);
     }
 
     public List<Card> getCardsFromId(Integer id) {
@@ -27,8 +29,8 @@ public class CardService {
                 .collect(Collectors.toList());
     }
 
-    public List<Card> getCardsFromName(String searchText) {
-        return cardRepository.findByNameContainingIgnoreCase(searchText);
+    public Page<Card> getCardsFromName(String searchText, Pageable pageable) {
+        return cardRepository.findByNameContainingIgnoreCase(searchText, pageable);
     }
 
     public List<Card> getCardsFromType(String type) {

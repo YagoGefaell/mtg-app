@@ -1,4 +1,4 @@
-package com.mtg.magicapi.Player;
+package com.mtg.magicapi.Card;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

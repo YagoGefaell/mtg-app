@@ -1,6 +1,9 @@
-package com.mtg.magicapi.Player;
+package com.mtg.magicapi.Card;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,23 +21,14 @@ public class CardController {
     }
 
     @GetMapping
-    public List<Card> getCards(
+    public Page<Card> getCards(
             @RequestParam(required = false) Integer id,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String typeLine,
             @RequestParam(required = false) String rarity) {
+        Pageable pageable = PageRequest.of(0, 30);
 
-        if (name != null) {
-            return cardService.getCardsFromName(name);
-        } else if (id != null && id > 0) {
-            return cardService.getCardsFromId(id);
-        } else if (typeLine != null) {
-            return cardService.getCardsFromType(typeLine);
-        } else if (rarity != null) {
-            return cardService.getCardsFromRarity(rarity);
-        } else {
-            return cardService.getCards();
-        }
+        return cardService.getCards(pageable);
     }
 
     @PostMapping

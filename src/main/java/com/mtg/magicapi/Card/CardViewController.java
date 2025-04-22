@@ -1,5 +1,8 @@
-package com.mtg.magicapi.Player;
+package com.mtg.magicapi.Card;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -19,18 +21,23 @@ public class CardViewController {
     private CardService cardService;
 
     @GetMapping("/")
-    public String showSearchPage(Model model) {
-
-        List<Card> allCards = cardService.getCards();
-        model.addAttribute("cards", allCards);
+    public String home(Model model, @RequestParam(defaultValue = "0") int page) {
+        Pageable pageable = PageRequest.of(page, 30);
+        Page<Card> allCards = cardService.getCards(pageable);
+        model.addAttribute("cards", allCards.getContent());
+        model.addAttribute("totalPages", allCards.getTotalPages());
+        model.addAttribute("currentPage", page);
         return "index";
     }
 
-    @GetMapping("/search")
-    public String searchCards(@RequestParam String name, Model model) {
-        List<Card> cards = cardService.getCardsFromName(name);
-        model.addAttribute("cards", cards);
-        model.addAttribute("query", name);
+    @GetMapping("/search/")
+    public String searchCards(@RequestParam("name") String name, Model model, @RequestParam(defaultValue = "0") int page) {
+        Pageable pageable = PageRequest.of(page, 30);
+        Page<Card> cards = cardService.getCardsFromName(name, pageable);
+        model.addAttribute("cards", cards.getContent());
+        model.addAttribute("totalPages", cards.getTotalPages());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("searchText", name);
         return "index";
     }
 }

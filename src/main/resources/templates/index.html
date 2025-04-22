@@ -30,6 +30,18 @@
                 <img th:src="${card.imageUrl}" alt="Carta" />
             </section>
         </article>
+
+        <footer id="pagination">
+            <span th:if="${currentPage > 0}">
+                <a th:href="@{'/home/?page=' + ${currentPage - 1}}">Anterior</a>
+            </span>
+
+            <span>Página <span th:text="${currentPage + 1}"></span> de <span th:text="${totalPages}"></span></span>
+
+            <span th:if="${currentPage < totalPages - 1}">
+                <a th:href="@{'/home/?page=' + ${currentPage + 1}}">Siguiente</a>
+            </span>
+        </footer>
     </div>
 </body>
 </html>
