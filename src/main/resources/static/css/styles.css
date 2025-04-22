@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent), #121026;
+    display: flex;
+    flex-direction: column;
+}
+
+article {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 6px;
+    width: 935px;
+    margin: auto;
+}
+
+.card {
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+article section img {
+    width: 100%;
+    height: 250px;
+}
+
+header {
+    background: #0d0b1a;
+    margin-bottom: 10px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    width: 935px;
+    margin: auto;
+}
+
+ul {
+    display: flex;
+    gap: 30px;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #ccc5eb;
+    font-size: 16px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#searchBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    background-color: #ccc5eb;
+    display: flex;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+input {
+    background: transparent;
+    border: none;
+    width: 200px;
+    color: #0d0b1a;
+}
+
+input[type="text"]:focus {
+    outline: none;
+}
+
+button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+i {
+    color: #0d0b1a;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deck builder</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+</head>
+<body>
+    <div id="container">
+        <header>
+            <nav>
+                <div id="searchBar">
+                    <form action="">
+                        <input type="text">
+                        <button type="submit"><i class="fi fi-rr-search"></i></button>
+                    </form>
+                </div>
+
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Decks</a></li>
+                    <li><a href="">Search</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <article>
+            <section th:each="card : ${cards}" class="card">
+                <img th:src="${card.imageUrl}" alt="Carta" />
+            </section>
+        </article>
+    </div>
+</body>
+</html>
