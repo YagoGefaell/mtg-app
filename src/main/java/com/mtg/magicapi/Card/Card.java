@@ -16,7 +16,7 @@ public class Card {
     private String name;
 
     @Column(name="mana_value")
-    private int manaValue;
+    private String manaValue;
 
     @Column(name="type_line")
     private String typeLine;
@@ -29,7 +29,7 @@ public class Card {
 
     public Card() {}
 
-    public Card(Integer id, String name, int manaValue, String typeLine, String rarity, String imageUrl) {
+    public Card(Integer id, String name, String manaValue, String typeLine, String rarity, String imageUrl) {
         this.id = id;
         this.name = name;
         this.manaValue = manaValue;
@@ -54,11 +54,11 @@ public class Card {
         this.name = name;
     }
 
-    public int getManaValue() {
+    public String getManaValue() {
         return manaValue;
     }
 
-    public void setManaValue(int manaValue) {
+    public void setManaValue(String manaValue) {
         this.manaValue = manaValue;
     }
 

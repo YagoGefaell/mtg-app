@@ -27,7 +27,7 @@ public class CardViewController {
         model.addAttribute("cards", allCards.getContent());
         model.addAttribute("totalPages", allCards.getTotalPages());
         model.addAttribute("currentPage", page);
-        return "index";
+        return "home";
     }
 
     @GetMapping("/search/")
@@ -38,6 +38,6 @@ public class CardViewController {
         model.addAttribute("totalPages", cards.getTotalPages());
         model.addAttribute("currentPage", page);
         model.addAttribute("searchText", name);
-        return "index";
+        return "home";
     }
 }

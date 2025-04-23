@@ -1,10 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Deck builder</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
 </head>
 <body>
-$END$
+<div id="container">
+    <header>
+        <nav>
+            <div id="searchBar">
+                <form action="/home/search/" method="get">
+                    <input type="text" name="name" id="searchInput">
+                    <button type="submit"><i class="fi fi-rr-search"></i></button>
+                </form>
+            </div>
+
+            <ul>
+                <li><a href="http://localhost:8080/home/">Home</a></li>
+                <li><a href="http://localhost:8080/api/cards">Decks</a></li>
+                <li><a href="http://localhost:8080/home/search/">Search</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <article id="cardContainer">
+        <section th:each="card : ${cards}" class="card">
+            <img th:src="${card.imageUrl}" alt="Carta" />
+        </section>
+    </article>
+
+    <footer id="pagination">
+            <span th:if="${currentPage > 0}">
+                <a th:href="@{'/home/?page=' + ${currentPage - 1}}">Anterior</a>
+            </span>
+
+        <span>Página <span th:text="${currentPage + 1}"></span> de <span th:text="${totalPages}"></span></span>
+
+        <span th:if="${currentPage < totalPages - 1}">
+                <a th:href="@{'/home/?page=' + ${currentPage + 1}}">Siguiente</a>
+            </span>
+    </footer>
+</div>
 </body>
 </html>
