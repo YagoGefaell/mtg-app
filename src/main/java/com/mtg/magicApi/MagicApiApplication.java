@@ -1,4 +1,4 @@
-package com.mtg.magicapi;
+package com.mtg.magicApi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
